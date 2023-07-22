@@ -1,0 +1,12 @@
+.Shop-items{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+@media screen and (min-width:768px ) {
+    .Shop-items{
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+    }
+}

@@ -1,0 +1,35 @@
+body{
+    text-align: center;
+}
+
+nav.primary{
+    background-color: lightblue;
+    padding: 20px;
+}
+
+nav a {
+    margin-right: 15px;
+}
+/* nav a.active{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+} */
+
+.user-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media screen and (min-width:768px ) {
+    .user-container{
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+    }
+}
+
+.card{
+    background-color: rgb(203, 245, 245);
+    padding: 10px;
+}
