@@ -28,7 +28,8 @@ const Index = () => {
     function changeState(e) {
         setState(e.target.value);
         // console.log(state, e.target.value)
-        setCities(states.find(obj => {}))
+        setCities(states.find(obj => {
+        }))
     }
 
   return (

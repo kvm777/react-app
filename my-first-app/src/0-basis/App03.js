@@ -14,7 +14,7 @@ function App(){
 
 const Movie = () => {
   return <section className="each-item">
-    <img src="https://www.usaoncanvas.com/images/low_res_image.jpg"></img>
+    <img src="https://www.usaoncanvas.com/images/low_res_image.jpg" alt="imagee"></img>
     <h1>Netflix show</h1>
   </section>
 }

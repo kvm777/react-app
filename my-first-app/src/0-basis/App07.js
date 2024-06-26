@@ -21,6 +21,8 @@ function App(){
 }
 
 const ListItem = (props) => {
+
+  //Object Desturucturing...
   const {email,name,body} = props;
   return <li className="comment">
     <div className="comments-header">

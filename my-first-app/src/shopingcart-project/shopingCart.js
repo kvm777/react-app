@@ -1,20 +1,27 @@
 import React from 'react'
-import { BrowserRouter as router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/navbar/navBar';
 import Shop from './pages/shop/shop';
 import Cart from './pages/cart/cart';
 import { ShopcontextProvider } from './context/shop-context';
+import SignIn from './authentication/signin';
+import useAuth from './authentication/useAuth';
+
 
 const ShopingCart = () => {
   return (
     <ShopcontextProvider>
-      <router>
+      <Router>
         <NavBar />
         <Routes>
-            <Route path='/' element={<Shop />} />
+            {/* <Route exact path='/' element={ <useAuth />} /> */}
+            <Route path='/shop' element={<useAuth />} />
+
+            <Route exact path='/' element={<SignIn />} />
+            <Route path='/shop' element={<Shop />} />
             <Route path='/cart' element={<Cart />} />
         </Routes>
-    </router>
+    </Router>
     </ShopcontextProvider>
   )
 }

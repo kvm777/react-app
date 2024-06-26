@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react'
+import React, { useReducer} from 'react'
 import "./3-app.css";
 // import DigitButton from "./Digitbutton";
 // import OperationButton from './Operationbutton';
@@ -13,6 +13,7 @@ export const ACTIONS = {
 }
 
 function Reducer(state, {type, payload}){
+
   switch(type){
     case ACTIONS.ADD_DIGIT:
       if(state.overWrite){
@@ -27,9 +28,19 @@ function Reducer(state, {type, payload}){
           ...state
         }
       }
-      if(payload.digit === "." && state.currentOperand.includes(".")){
+
+      if(payload.digit === "." && state.currentOperand == null){
+        return{
+          ...state,
+          currentOperand: `0${payload.digit}`
+        }
+      }
+
+      else if(payload.digit === "." && state.currentOperand.includes(".")){
         return state
       }
+
+      
       return {
         ...state,
         currentOperand: `${state.currentOperand || ""}${payload.digit}`
@@ -39,6 +50,15 @@ function Reducer(state, {type, payload}){
       return {}
 
     case ACTIONS.CHOOSE_OPERATION:
+      console.log(payload.operation)
+      if(state.previousOperand == null && state.currentOperand == null && payload.operation === '-'){
+        console.log("done")
+        return {
+          ...state,
+          currentOperand: `${payload.operation}`
+        }
+      }
+
       if(state.previousOperand == null && state.currentOperand == null){
         return state
       }
@@ -58,6 +78,7 @@ function Reducer(state, {type, payload}){
           operator: payload.operation
         }
       }
+      
 
       return{
         ...state,
@@ -155,10 +176,12 @@ function OperationButton({dispatch, operation}){
       {operation}
       </button>
 }   
-const Index = () => { 
+const Calculator = () => { 
+  // const [isOperand, setIsOperand] = useState(false)
 
   const [{previousOperand, currentOperand, operator}, dispatch] = useReducer(Reducer, {})
   
+
   // dispatch({type:ACTIONS.ADD_DIGIT, payload:"="})
   return (
     <div className='claculator-grid'>
@@ -177,7 +200,7 @@ const Index = () => {
       <DigitButton dispatch={dispatch} digit="4" />
       <DigitButton dispatch={dispatch} digit="5" />
       <DigitButton dispatch={dispatch} digit="6" />
-      <OperationButton dispatch={dispatch} operation="-" />
+      <OperationButton dispatch={dispatch} operation="-" /> 
       <DigitButton dispatch={dispatch} digit="7" />
       <DigitButton dispatch={dispatch} digit="8" />
       <DigitButton dispatch={dispatch} digit="9" />
@@ -189,4 +212,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Calculator
